@@ -64,7 +64,7 @@ document.getElementById('btnOver').addEventListener('click', function () {
             orderNumber++;
             //функция приобразования числа в строку
             orderNumberField.innerText = orderNumber;
-            answerField.innerText = `${questionText}  ${answerNumber }?`;
+            combiningDigits();
         }
     }
 })
@@ -88,14 +88,14 @@ document.getElementById('btnLess').addEventListener('click', function () {
                 answerNumber  = Math.ceil((maxValue - minValue) / 2);
                 orderNumber++;
                 orderNumberField.innerText = orderNumber;
-                answerField.innerText = `${questionText}  ${answerNumber }?`;
+                combiningDigits();
             //меньше ноля    
             }else{
                 minValue = answerNumber  - 1;
                 answerNumber  = Math.round(((-1) * (maxValue - minValue)) / 2);
                 orderNumber++;
                 orderNumberField.innerText = orderNumber;
-                answerField.innerText = `${questionText}  ${answerNumber }?`;
+                combiningDigits();
             }
         }
     }
