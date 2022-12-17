@@ -18,15 +18,13 @@ console.log('inputmin=',inputmin)
 console.log('inputmax=',inputmax)
 
 
+
+
 //начало игры
-
-
-
 start_button.onclick = function() { 
 
 let minValue = parseInt(document.querySelector('#input_min').value);
 let maxValue = parseInt(document.querySelector('#input_max').value);
-let answerNumber  = Math.floor((minValue + maxValue) / 2);
 let orderNumber = 1;
 let gameRun = true;
 let questionText = 'Текст вопроса';
@@ -39,26 +37,46 @@ let sotkiText = ' ';
 let desytkiText = ' ';
 let edenitchText = ' ';
 
-visible_game();
-TextCorection();
 
 //console.log('inputmin=',inputmin)
 //console.log('inputmax=',inputmax)
-console.log('minValue=',minValue)
-console.log('maxValue=',maxValue)
 
 
+// доделай проверку
 //проверка вводных данных на тип
-if (isNaN(minValue) || isNaN(maxValue) ){
+if ((!isNaN(parseFloat(minValue)) && isFinite) || (! isNaN(parseFloat(maxValue)) && isFinite)){
+    minValue = minValue;
+    maxValue = maxValue;
+}else{
     minValue = 100;
     maxValue = 200;
 }
+
+
 //проверки вводных данных на ограничение(тернарный тип)
-(minValue < -999) ? (minValue = -999): (minValue = minValue);
-(maxValue > 999) ? (maxValue = 999): (maxValue = maxValue);
+(minValue > 999) ? (minValue = 999) : (minValue = minValue);
+console.log('первая проверка', minValue);
+(minValue < -999) ? (minValue = -999) : (minValue = minValue);
+console.log('вторая проверка', minValue);
+(maxValue > 999) ? (maxValue = 999) : (maxValue = maxValue);
+console.log('третья проверка', maxValue);
+(maxValue < -999) ? (maxValue = -999) : (maxValue = maxValue);
+console.log('третья проверка', maxValue);
+
+let answerNumber  = Math.floor((minValue + maxValue) / 2);
+
+if (!Number.isNaN(answerNumber)){
+    minValue = minValue;
+    maxValue = maxValue;
+}else{
+    minValue = 100;
+    maxValue = 200;
+    answerNumber = 150;
+}
 
 
-
+visible_game();
+TextCorection();
 
 //номер вопроса (5)
 const orderNumberField = document.getElementById('orderNumberField');
@@ -81,15 +99,16 @@ document.getElementById('btnRetry').addEventListener('click', function () {
 })
 
 //кнопка больше
-document.getElementById('btnOver').addEventListener('click', function () {
+document.getElementById('btnOver3').addEventListener('click', function () {
+    questionRandomfun()
+    const phraseRandom = Math.round( Math.random());
+    const answerPhrase = (phraseRandom === 1) ?
+        //true
+        `Вы загадали неправильное число!\n` :
+        //false
+        `Я сдаюсь..\n`;
     if (gameRun){
         if (minValue === maxValue){
-            const phraseRandom = Math.round( Math.random());
-            const answerPhrase = (phraseRandom === 1) ?
-                //true
-                `Вы загадали неправильное число!\n` :
-                //false
-                `Я сдаюсь..\n`;
             answerField.innerText = answerPhrase;
             gameRun = false;
         } else {
@@ -103,31 +122,34 @@ document.getElementById('btnOver').addEventListener('click', function () {
     }
 })
 
+
 //кнопка меньше
-document.getElementById('btnLess').addEventListener('click', function () {
+document.getElementById('btnLess1').addEventListener('click', function () {
+    questionRandomfun()
+    let razMinValandMaxValue = 0 ;
+    const phraseRandom = Math.round( Math.random());
+    const answerPhrase = (phraseRandom === 1) ?
+        //true
+        `Вы загадали неправильное число!\n` :
+        //false
+        `Я сдаюсь..\n`;
     if (gameRun){
-        if (maxValue === minValue ){
-            const phraseRandom = Math.round( Math.random());
-            const answerPhrase = (phraseRandom === 1) ?
-                //true
-                `Вы загадали неправильное число!\n` :
-                //false
-                `Я сдаюсь..\n`;
+        if ( (maxValue) === minValue){
             answerField.innerText = answerPhrase;
             gameRun = false;
         } else {
-            //от ноля и выше
-            if ((maxValue || minValue) > 0) {
-                maxValue = answerNumber  - 1;
-                answerNumber  = Math.ceil((maxValue - minValue) / 2);
+            razMinValandMaxValue = (maxValue - minValue);
+            console.log('answerNumber= ',answerNumber)
+            if (((answerNumber -2) < minValue) || ((answerNumber -2) > maxValue)){
                 orderNumber++;
                 orderNumberField.innerText = orderNumber;
                 combiningDigits();
-            //меньше ноля    
-            }else{
-                minValue = answerNumber  - 1;
-                answerNumber  = Math.round(((-1) * (maxValue - minValue)) / 2);
+                maxValue = minValue
+            }else {
+                maxValue = answerNumber  + 1;
+                answerNumber  = Math.floor(((( minValue + razMinValandMaxValue ) + ( maxValue + razMinValandMaxValue)) / 2) - razMinValandMaxValue);
                 orderNumber++;
+                //функция приобразования числа в строку
                 orderNumberField.innerText = orderNumber;
                 combiningDigits();
             }
@@ -136,7 +158,7 @@ document.getElementById('btnLess').addEventListener('click', function () {
 })
 
 //кнопка верно(конец игры)
-document.getElementById('btnEqual').addEventListener('click', function () {
+document.getElementById('btnEqual2').addEventListener('click', function () {
     if (gameRun){
         let WinRandom = Math.round( Math.random()*3);
         switch(WinRandom){
@@ -156,7 +178,7 @@ document.getElementById('btnEqual').addEventListener('click', function () {
 
 //функция проверки коррекности данных
 function TextCorection(){
-    if (minValue>=maxValue){
+    if (minValue > maxValue){
         alert('Данные введены не коректно');
         location.reload();
     }
@@ -167,16 +189,16 @@ function questionRandomfun(){
     let questionRandom = Math.round( Math.random()*3);
     switch(questionRandom){
         case (1):  
-            questionText = 'Люк я твой отец ';
+            questionText = 'Наверное вот это число: ';
             break;
         case (2):  
-            questionText = 'Угадал ';
+            questionText = 'Угадал с числом:  ';
             break;
         case (3):  
-            questionText = 'Возможно это число ';
+            questionText = 'Возможно это число: ';
             break;    
         default:
-            questionText = 'Не это число ';
+            questionText = 'Я угадал данное число: ';
             break;
     }
 }
@@ -383,7 +405,8 @@ function combiningDigits(){
         if (dlinnaText>20){
             answerField.innerText = `${questionText}  ${answerNumber }?`;
         }else{
-            answerField.innerText = `${questionText}  ${(sotkiText+desytkiText+edenitchText) }?`;
+            //answerField.innerText = `${questionText}  ${(sotkiText+desytkiText+edenitchText) }?`;
+            answerField.innerText = `${questionText}  ${answerNumber }?`;
         }
 }
 

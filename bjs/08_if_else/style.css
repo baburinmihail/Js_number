@@ -7,19 +7,36 @@ body{
     font-family: 'Open Sans', monospace;
 }
 
-#btnLess{
+#answerField_block{
+    margin-bottom: 15px;
+}
+
+#btnLess1{
     background-color: brown;
     color: black;
+    padding: 10px 20px;
+    border-radius: 10px;
 }
 
-#btnOver{
+#btnOver3{
     background-color: forestgreen;
     color: black;
+    padding: 10px 20px;
+    border-radius: 10px;
 }
 
-#btnEqual{
+#btnEqual2{
     background-color:gold;
     color: black;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+#btnRetry{
+    background-color:rgb(111, 220, 248);
+    color: black;
+    padding: 10px 20px;
+    border-radius: 10px;
 }
 
 .inpute-data_number{
