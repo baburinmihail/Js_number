@@ -95,7 +95,10 @@ combiningDigits();
 
 //перезапуск
 document.getElementById('btnRetry').addEventListener('click', function () {
-    location.reload();
+//    location.reload();
+// скрывает игру и раскрывает меню
+
+invisible_game()
 })
 
 //кнопка больше
@@ -145,6 +148,8 @@ document.getElementById('btnLess1').addEventListener('click', function () {
                 orderNumberField.innerText = orderNumber;
                 combiningDigits();
                 maxValue = minValue
+                answerField.innerText = answerPhrase;
+                gameRun = false;
             }else {
                 maxValue = answerNumber  + 1;
                 answerNumber  = Math.floor(((( minValue + razMinValandMaxValue ) + ( maxValue + razMinValandMaxValue)) / 2) - razMinValandMaxValue);
@@ -257,7 +262,7 @@ function numberToTextSotki(){
                 break;    
         }
     }else{
-        sotkiText = ''
+        sotkiText = ' '
         console.log(sotkiText);
         sotkiTextLength = sotkiText.length;
     }
@@ -321,7 +326,7 @@ function numberToTextDesytki(){
                 break;    
         }
     }else{
-        desytkiText = '_'
+        desytkiText = ' '
         console.log(desytkiText)
         desytkiTextLength = desytkiText.length
     }
@@ -394,7 +399,7 @@ function numberToTextEdenitch(){
 
 //функция склеивания и проверки на динну символов
 function combiningDigits(){
-    (answerNumber>=0)?(znak = '+'):(znak = '-');
+    (answerNumber>=0)?(znak = ' '):(znak = 'минус ');
     console.log(znak)
     numberToTextSotki();
     numberToTextDesytki();
@@ -405,8 +410,8 @@ function combiningDigits(){
         if (dlinnaText>20){
             answerField.innerText = `${questionText}  ${answerNumber }?`;
         }else{
-            //answerField.innerText = `${questionText}  ${(sotkiText+desytkiText+edenitchText) }?`;
-            answerField.innerText = `${questionText}  ${answerNumber }?`;
+            answerField.innerText = `${questionText}  ${(znak+sotkiText+desytkiText+edenitchText) }?`;
+            //answerField.innerText = `${questionText}  ${answerNumber }?`;
         }
 }
 
