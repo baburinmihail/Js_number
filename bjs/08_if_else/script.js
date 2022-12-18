@@ -174,7 +174,7 @@ document.getElementById('btnEqual2').addEventListener('click', function () {
                 answerField.innerText = `Я хорош)\n`
                 break;   
             default:
-                questionText = 'Ты был неплох';
+                answerField.innerText = 'Ты был неплох';
             break;
         }
         gameRun = false;
@@ -340,7 +340,7 @@ function numberToTextEdenitch(){
         console.log(edenitch)
         switch(edenitch){
             case (0):  
-                edenitchText = ' ';
+                edenitchText = 'ноль';
                 console.log(edenitchText);
                 edenitchTextLength = edenitchText.length;
                 break;  
