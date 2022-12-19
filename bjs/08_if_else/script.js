@@ -137,24 +137,28 @@ document.getElementById('btnLess1').addEventListener('click', function () {
         //false
         `Я сдаюсь..\n`;
             razMinValandMaxValue = ((maxValue) - minValue) ;
-            if (((answerNumber - 1 ) < minValue) || ((answerNumber - 1 ) > maxValue)){
-                orderNumber++;
-                orderNumberField.innerText = orderNumber;
-                combiningDigits();
-                maxValue = minValue
+            if (answerNumber === minValue){
                 answerField.innerText = answerPhrase;
-                console.log('gameRun = false, answerNumber= ',answerNumber)
                 gameRun = false;
-            }else {
-                maxValue = answerNumber - 1;
-                answerNumber  = Math.floor(((( minValue + razMinValandMaxValue ) + ( maxValue + razMinValandMaxValue)) / 2) - razMinValandMaxValue);
-                orderNumber++;
-                //функция приобразования числа в строку
-                orderNumberField.innerText = orderNumber;
-                combiningDigits();
-                console.log('gameRun = true, answerNumber= ',answerNumber)
+            }else{
+                if (((answerNumber - 1 ) < minValue) || ((answerNumber - 1 ) > maxValue)){
+                    orderNumber++;
+                    orderNumberField.innerText = orderNumber;
+                    combiningDigits();
+                    maxValue = minValue
+                    answerField.innerText = answerPhrase;
+                    console.log('gameRun = false, answerNumber= ',answerNumber)
+                    gameRun = false;
+                }else {
+                    maxValue = answerNumber - 1;
+                    answerNumber  = Math.floor(((( minValue + razMinValandMaxValue ) + ( maxValue + razMinValandMaxValue)) / 2) - razMinValandMaxValue);
+                    orderNumber++;
+                    //функция приобразования числа в строку
+                    orderNumberField.innerText = orderNumber;
+                    combiningDigits();
+                    console.log('gameRun = true, answerNumber= ',answerNumber)
+                }
             }
-        
 })
 
 //кнопка верно(конец игры)
