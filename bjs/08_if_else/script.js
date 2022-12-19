@@ -136,30 +136,25 @@ document.getElementById('btnLess1').addEventListener('click', function () {
         `Вы загадали неправильное число!\n` :
         //false
         `Я сдаюсь..\n`;
-    if (gameRun){
-        if ( (maxValue) === minValue){
-            answerField.innerText = answerPhrase;
-            gameRun = false;
-        } else {
-            razMinValandMaxValue = (maxValue - minValue);
-            console.log('answerNumber= ',answerNumber)
-            if (((answerNumber -2) < minValue) || ((answerNumber -2) > maxValue)){
+            razMinValandMaxValue = ((maxValue) - minValue) ;
+            if (((answerNumber - 1 ) < minValue) || ((answerNumber - 1 ) > maxValue)){
                 orderNumber++;
                 orderNumberField.innerText = orderNumber;
                 combiningDigits();
                 maxValue = minValue
                 answerField.innerText = answerPhrase;
+                console.log('gameRun = false, answerNumber= ',answerNumber)
                 gameRun = false;
             }else {
-                maxValue = answerNumber  + 1;
+                maxValue = answerNumber - 1;
                 answerNumber  = Math.floor(((( minValue + razMinValandMaxValue ) + ( maxValue + razMinValandMaxValue)) / 2) - razMinValandMaxValue);
                 orderNumber++;
                 //функция приобразования числа в строку
                 orderNumberField.innerText = orderNumber;
                 combiningDigits();
+                console.log('gameRun = true, answerNumber= ',answerNumber)
             }
-        }
-    }
+        
 })
 
 //кнопка верно(конец игры)
@@ -340,7 +335,7 @@ function numberToTextEdenitch(){
         console.log(edenitch)
         switch(edenitch){
             case (0):  
-                edenitchText = 'ноль';
+                edenitchText = ' ';
                 console.log(edenitchText);
                 edenitchTextLength = edenitchText.length;
                 break;  
@@ -405,13 +400,12 @@ function combiningDigits(){
     numberToTextDesytki();
     numberToTextEdenitch();
     dlinnaText = (sotkiTextLength + desytkiTextLength + edenitchTextLength);
-    console.log(dlinnaText);
         //вывод результата
-        if (dlinnaText>20){
+        if (( dlinnaText > 20 ) || ( answerNumber === 0 )){ 
             answerField.innerText = `${questionText}  ${answerNumber }?`;
         }else{
-            answerField.innerText = `${questionText}  ${(znak+sotkiText+desytkiText+edenitchText) }?`;
-            //answerField.innerText = `${questionText}  ${answerNumber }?`;
+            console.log("answerField ",answerField)
+            answerField.innerText = `${questionText}  ${(znak+sotkiText+desytkiText+edenitchText) }  (${answerNumber })?`;
         }
 }
 
