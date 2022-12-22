@@ -1,0 +1,13 @@
+#card-body{
+    background-color: rgb(149, 180, 238);
+}
+
+#card-header{
+    background-color: rgb(165, 74, 74);
+}
+
+#startButton , #clinerButton{
+    border-radius: 40px;
+    font-size: 19px;
+    background-color: crimson;
+}

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Генератор случайных пользователей</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans" rel="stylesheet">
     <link rel="stylesheet" href="style.css" type="text/css"/>
 </head>
@@ -13,19 +13,54 @@
     <div class="row game-card align-items-center">
         <div class="col col-md-6 offset-md-3">
             <div class="card text-center">
-                <div class="card-header">
-                    <p class="m-0">Окно результатов генерации</p>
+                <div class="card-header" id="card-header">
+                    <h3><p class="m-0">Окно результатов генерации</p></h3>
                 </div>
-                <div class="card-body">
+                <div class="card-body" id="card-body">
                     <div class="row">
-                        <div class="col">
-                            <h3 class="card-title"><span id="surnameOutput">Генерация фамилии</span></h3>
-                            <h4>Имя: <span id="firstNameOutput">Иван</span></h4>
-                            <p>
-                                <span id="genderOutput">Генерация пола</span>
-                                <span>, </span>
-                                <span id="birthYearOutput">Генерация года рождения</span>
-                            </p>
+                        <!--фамилия-->
+                        <div class="col-12">
+                            <h5 class="card-title">Фамилия:<span id="surnameOutput">Генерация фамилии</span></h5>
+                        </div>
+                        <!--имя-->
+                        <div class="col-12">
+                            <h5>Имя: <span id="firstNameOutput">Иван</span></h5>
+                        </div>
+                        <!--Отчество-->    
+                        <div class="col-12">
+                            <h5>Отчество:<span id="patronymicOutput">Иванович</span> </h5>
+                        </div>
+                        <!--Пол-->
+                        <div class="col-2">
+                            <h6><span>Пол:</span></h6>
+                        </div> 
+                        <div class="col-3">
+                            <span id="genderOutput">Генерация пола</span>
+                        </div>
+                        <!--Профессия-->
+                        <div class="col-3">
+                            <h6><span>Профессия:</span></h6>
+                        </div> 
+                        <div class="col-4">
+                            <span id="profeshin">Профессия</span>
+                        </div>
+                        <!--дата-->
+                        <div class="col-4">
+                            <h6><span>Дата рождения</span>:</span></h6>
+                        </div>     
+                        <div class="col-5">
+                            <span id="birthDateOutput">Месяц и дата</span>
+                            <span id="birthYearOutput">Генерация года рождения</span>
+                            <span>года</span>
+                        </div>
+                        <div class="col-3">
+                        </div>
+                        <!--кнопки-->
+                        <div class="col-6">
+                            <button id="startButton">Генерация</button>
+                        </div>
+                        <div class="col-6">
+                            <button id="clinerButton">Очистка полей</button>
                         </div>
                     </div>
                 </div>
