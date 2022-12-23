@@ -55,14 +55,25 @@ const personGenerator = {
         }
     }`,
 
-    patronymicName: `{
+    patronymicNameMan: `{
         "count": 5,
         "list": {     
-            "id_1": "Александров",
-            "id_2": "Андреев",
-            "id_3": "Иванов",
-            "id_4": "Михайлов",
-            "id_5": "Игнатов"
+            "id_1": "Александрович",
+            "id_2": "Андреевич",
+            "id_3": "Иванович",
+            "id_4": "Михайлович",
+            "id_5": "Игнатович"
+        }
+    }`,
+
+    patronymicNameGerl: `{
+        "count": 5,
+        "list": {     
+            "id_1": "Кириловна",
+            "id_2": "Анатольевна",
+            "id_3": "Данииловна",
+            "id_4": "Богдановна",
+            "id_5": "Артемовна"
         }
     }`,
 
@@ -118,7 +129,7 @@ const personGenerator = {
 
     //год рождения
     year: function () {
-        const yearChoes = randomIntFromInterval(1922, 2022);
+        const yearChoes = randomIntFromInterval(1942, 2003);
         return yearChoes;
     },
 
@@ -184,9 +195,14 @@ const personGenerator = {
         return this.randomValue(this.surnameJson);
     },
 
-    // функция отчества
-    randomPatronymic: function() {
-        return this.randomValue(this.patronymicName);
+    // функция муж. отчества
+    randomPatronymicMan: function() {
+        return this.randomValue(this.patronymicNameMan);
+    },
+
+    // функция жен. отчества
+    randomPatronymicGerl: function() {
+        return this.randomValue(this.patronymicNameGerl);
     },
 
     // функции работы
@@ -208,7 +224,7 @@ const personGenerator = {
             this.person.gender = this.GENDER_MALE;
             this.person.firstName = this.randomManFirstName();
             this.person.surnameJson = this.randomSurname();
-            this.person.patronymicGender = `${this.randomPatronymic()}ич`;
+            this.person.patronymicGender = this.randomPatronymicMan();
             this.person.work = this.randomWorkMan();
             return this.person;
         }else{
@@ -217,7 +233,7 @@ const personGenerator = {
             this.person.gender = this.GENDER_FEMALE;
             this.person.firstName = this.randomGerlFirstName();
             this.person.surnameJson = `${this.randomSurname()}а`;
-            this.person.patronymicGender = `${this.randomPatronymic()}на`;
+            this.person.patronymicGender = this.randomPatronymicGerl();
             this.person.work = this.randomWorkGerl();
             return this.person;
         }
