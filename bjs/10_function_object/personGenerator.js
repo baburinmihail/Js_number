@@ -55,28 +55,6 @@ const personGenerator = {
         }
     }`,
 
-    patronymicNameMan: `{
-        "count": 5,
-        "list": {     
-            "id_1": "Александрович",
-            "id_2": "Андреевич",
-            "id_3": "Иванович",
-            "id_4": "Михайлович",
-            "id_5": "Игнатович"
-        }
-    }`,
-
-    patronymicNameGerl: `{
-        "count": 5,
-        "list": {     
-            "id_1": "Кириловна",
-            "id_2": "Анатольевна",
-            "id_3": "Данииловна",
-            "id_4": "Богдановна",
-            "id_5": "Артемовна"
-        }
-    }`,
-
     workMan: `{
         "count": 5,
         "list": {     
@@ -185,7 +163,7 @@ const personGenerator = {
         return this.randomValue(this.firstNameMaleJson);
     },
 
-    // функция муржского имени
+    // функция женского имени
     randomGerlFirstName: function() {
         return this.randomValue(this.firstNameFemaleJson);
     },
@@ -195,15 +173,61 @@ const personGenerator = {
         return this.randomValue(this.surnameJson);
     },
 
-    // функция муж. отчества
+    // функция отчества муржского
     randomPatronymicMan: function() {
-        return this.randomValue(this.patronymicNameMan);
+        const firstName = this.randomValue(this.firstNameMaleJson);
+        //const firstName = "Дмитрий"
+        const rootName = firstName.slice(-2);
+        let patronymic = 'Иванов'
+        switch(rootName){
+            case ("ий"):
+                patronymic = (firstName.replace(/ий/g, '') ) + "евич"; 
+            break;
+            case ("й"):  
+                patronymic = firstName + "ич";
+                break;
+            case ("та"):
+                patronymic = (firstName.replace(/а/g, '') ) + "ич";
+                break;
+            case ("ей"):  
+                patronymic = firstName + "евич";
+                break;     
+            default:
+                patronymic = firstName + "ович";
+                break;
+        }
+        return patronymic;
     },
 
-    // функция жен. отчества
-    randomPatronymicGerl: function() {
-        return this.randomValue(this.patronymicNameGerl);
-    },
+    // функция отчества женского
+        randomPatronymicGerl: function() {
+            console.log('Test');
+            const firstName = this.randomValue(this.firstNameMaleJson);
+            //const firstName = "Дмитрий"
+            const rootName = firstName.slice(-2);
+            let patronymic = 'Иванова'
+            switch(rootName){
+                case ("ий"):
+                    patronymic = (firstName.replace(/ий/g, '') ) + "евна"; 
+                break;
+                case ("й"):  
+                    patronymic = firstName + "ична";
+                    break;
+                case ("та"):
+                    patronymic = (firstName.replace(/а/g, '') ) + "ична";
+                    break;
+                case ("ей"):
+                    patronymic = (firstName.replace(/ей/g, '') ) + "евна";   
+                    break;     
+                default:
+                    patronymic = firstName + "овна";
+                    break;
+            }
+            console.log(firstName);
+            console.log(rootName);
+            console.log(patronymic);
+            return patronymic;
+        },
 
     // функции работы
     randomWorkMan: function() {
